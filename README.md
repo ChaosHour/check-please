@@ -20,9 +20,9 @@ A shell script that runs chkrootkit, rkhunter, and ClamAV with some others depen
 - `Lynis`
 
 # Example Usage and output:
-```zsh
+```bash
 % ./checkme.sh
- Running chkrootkit [+]
+ Running chkrootkit <span style="color: green;"> [+]</span>
 Password:
 not infected
 not infected
