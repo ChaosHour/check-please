@@ -22,7 +22,7 @@ A shell script that runs chkrootkit, rkhunter, and ClamAV with some others depen
 
 # Config files
 Line Number 940 in  /usr/local/etc/rkhunter.conf
-You might want to change the default to an actual tmp dir.
+If on MacOS you will want to change the default which is /dev/shm even if not uncommented.
 
 Here is mine on MacOS:
 ```bash
