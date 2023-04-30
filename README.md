@@ -20,7 +20,7 @@ A shell script that runs chkrootkit, rkhunter, and ClamAV with some others depen
 - `Lynis`
 
 # Example Usage and output:
-```bash
+```zsh
 % ./checkme.sh
  Running chkrootkit [+]
 Password:
