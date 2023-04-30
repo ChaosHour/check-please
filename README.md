@@ -22,7 +22,7 @@ A shell script that runs chkrootkit, rkhunter, and ClamAV with some others depen
 # Example Usage and output:
 ```bash
 % ./checkme.sh
- Running chkrootkit <span style="color: green;"> [+]</span>
+ Running chkrootkit [+]
 Password:
 not infected
 not infected
