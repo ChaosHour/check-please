@@ -157,7 +157,7 @@ case $1 in
     -s) echo -e "$COL_YELLOW Running full system scan with clamav $COL_GREEN [+] $COL_RESET"
            clamscan -i -r --recursive=yes --scan-mail=yes --scan-pdf=yes --scan-html=yes --scan-archive=yes --phishing-scan-urls=yes --exclude-dir=infected --move="${homedir}/infected" /
         ;;
-    *) echo -e "$COL_YELLOW Usage: $0 -h for homedir or $0 -s for full system scan $COL_RESET"
+    *) echo -e "$COL_YELLOW Usage: $0 -h for homedir clamscan or $0 -s for full system clamscan $COL_RESET"
         ;;
 esac
 

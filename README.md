@@ -67,5 +67,5 @@ Warning: Hidden file found: /usr/share/man/man5/.rhosts.5: troff or preprocessor
     - Rootkit scanner                                         [ FOUND ]
     - Installed malware scanner                               [ FOUND ]
   - Malware scanner        [V]
- Usage: ./checkme.sh -h for homedir or ./checkme.sh -s for full system scan
+ Usage: ./checkme.sh -h for homedir clamscan or ./checkme.sh -s for full system clamscan
 ```
