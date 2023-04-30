@@ -19,6 +19,18 @@ A shell script that runs chkrootkit, rkhunter, and ClamAV with some others depen
 - `debsums`
 - `Lynis`
 
+
+# Config files
+Line Number 940 in  /usr/local/etc/rkhunter.conf
+You might want to change the default to an actual tmp dir.
+
+Here is mine on MacOS:
+```bash
+ 940 #SUSPSCAN_TEMP=/dev/shm
+ 941 SUSPSCAN_TEMP=/Users/klarsen/tmp
+ ```
+
+
 # Example Usage and output:
 ```bash
 % ./checkme.sh
