@@ -133,6 +133,49 @@ echo -e "$COL_YELLOW Running a lynis audit scan $COL_GREEN [+] $COL_RESET"
 }
 
 
+
+# Define the function to scan the system for MacOS:
+scan_system () {
+  # Code to scan the entire system
+  echo -e "$COL_YELLOW updating clamav virus defs $COL_GREEN [+] $COL_RESET"
+           freshclam -v
+  echo -e "$COL_YELLOW Running full system scan with clamav $COL_GREEN [+] $COL_RESET"
+           clamscan -i -r --recursive=yes --scan-mail=yes --scan-pdf=yes --scan-html=yes --scan-archive=yes --phishing-scan-urls=yes --exclude-dir=infected --move="${homedir}/infected" /
+       
+}
+
+# Define the function to scan the homedir for MacOS:
+scan_homedir () {
+  # Code to scan only the homedir
+  echo -e "$COL_YELLOW updating clamav virus defs $COL_GREEN [+] $COL_RESET"
+           freshclam -v
+  echo -e "$COL_YELLOW Running clamscan on homedir $COL_GREEN [+] $COL_RESET"
+           clamscan -i -r --recursive=yes --scan-mail=yes --scan-pdf=yes --scan-html=yes --scan-archive=yes --phishing-scan-urls=yes --exclude-dir=infected --move="${homedir}/infected" ${homedir}
+  
+}
+
+
+# Define the function to scan the system for Linux:
+scan_system2 () {
+  # Code to scan the entire system
+  echo -e "$COL_YELLOW updating clamav virus defs $COL_GREEN [+] $COL_RESET"
+           sudo freshclam -v
+  echo -e "$COL_YELLOW Running full system scan with clamav $COL_GREEN [+] $COL_RESET"
+           sudo clamscan -i -r --recursive=yes --scan-mail=yes --scan-pdf=yes --scan-html=yes --scan-archive=yes --phishing-scan-urls=yes --exclude-dir=infected --move="${homedir}/infected" /
+       
+}
+
+# Define the function to scan the homedir for Linux:
+scan_homedir2 () {
+  # Code to scan only the homedir
+  echo -e "$COL_YELLOW updating clamav virus defs $COL_GREEN [+] $COL_RESET"
+          sudo  freshclam -v
+  echo -e "$COL_YELLOW Running clamscan on homedir $COL_GREEN [+] $COL_RESET"
+           sudo clamscan -i -r --recursive=yes --scan-mail=yes --scan-pdf=yes --scan-html=yes --scan-archive=yes --phishing-scan-urls=yes --exclude-dir=infected --move="${homedir}/infected" ${homedir}
+  
+}
+
+
 # Check for OS type
 if [[ "$OSTYPE" == darwin* ]]; then
   # code for MacOs
@@ -152,17 +195,29 @@ else
 fi
 
 
-# Create a case switch if you want to scan the entire system or just the homedir
+
+# Create the case switch based on the command line arguments
 case $1 in
-    -h) echo -e "$COL_YELLOW updating clamav virus defs $COL_GREEN [+] $COL_RESET"
-           freshclam -v
-        echo -e "$COL_YELLOW Running clamscan on homedir $COL_GREEN [+] $COL_RESET"
-           clamscan -i -r --recursive=yes --scan-mail=yes --scan-pdf=yes --scan-html=yes --scan-archive=yes --phishing-scan-urls=yes --exclude-dir=infected --move="${homedir}/infected" ${homedir}
+    -s)
+        if [[ "$OSTYPE" == linux-gnu ]]; then
+           scan_system2
+        elif [[ "$OSTYPE" == darwin* ]]; then
+           scan_system
+        else
+           echo -e "$COL_RED "Unsupported OS: $os" $COL_RESET"
+        fi
         ;;
-    -s) echo -e "$COL_YELLOW Running full system scan with clamav $COL_GREEN [+] $COL_RESET"
-           clamscan -i -r --recursive=yes --scan-mail=yes --scan-pdf=yes --scan-html=yes --scan-archive=yes --phishing-scan-urls=yes --exclude-dir=infected --move="${homedir}/infected" /
+     -h)
+        if [[ "$OSTYPE" == linux-gnu ]]; then
+           scan_homedir2
+        elif [[ "$OSTYPE" == darwin* ]]; then
+           scan_homedir
+        else
+           echo -e "$COL_RED "Unsupported OS: $os" $COL_RESET"
+        fi
         ;;
-    *) echo -e "$COL_YELLOW Usage: $0 -h for homedir clamscan or $0 -s for full system clamscan $COL_RESET"
+      *)
+           echo -e "$COL_YELLOW Usage: $0 -h for homedir clamscan or $0 -s for full system clamscan $COL_RESET"
         ;;
 esac
 
