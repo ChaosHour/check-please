@@ -147,7 +147,7 @@ else
     sCheck
     rKits
     dChecks
-    lCheck     
+    lCheck2     
   fi
 fi
 
