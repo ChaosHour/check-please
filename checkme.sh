@@ -120,12 +120,17 @@ echo -e "$COL_YELLOW Verifying installed packages using debsums $COL_GREEN [+] $
    sudo dpkg-query -S $(sudo debsums -c 2>&1 | sed -e "s/.*file \(.*\) (.*/\1/g") | cut -d: -f1 | sort -u
 }
 
-# Run Lynis scan
+# Run Lynis scan on MacOs
 lCheck() {
 echo -e "$COL_YELLOW Running a lynis audit scan $COL_GREEN [+] $COL_RESET"
-   lynis audit system --quick | grep -iE 'malware|clamav|rootkit|chkrootkit|rkhunter|unhide|debsums'
+   lynis audit system --quick | grep -iE 'malware|clamav|rootkit|chkrootkit|rkhunter'
 }
 
+# Run Lynis scan on Ubuntu
+lCheck2() {
+echo -e "$COL_YELLOW Running a lynis audit scan $COL_GREEN [+] $COL_RESET"
+  sudo lynis audit system --quick | grep -iE 'malware|clamav|rootkit|chkrootkit|rkhunter|unhide|debsums'
+}
 
 
 # Check for OS type

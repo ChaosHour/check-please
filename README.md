@@ -6,18 +6,18 @@ A shell script that runs chkrootkit, rkhunter, and ClamAV with some others depen
 
 
 # Dependencies for MacOS:
-- `chkrootkit`
-- `rkhunter`
-- `ClamAV`
-- `Lynis`
+- `chkrootkit` brew install chkrootkit
+- `rkhunter` brew install rkhunter
+- `ClamAV` brew install clamav
+- `Lynis` brew install lynis
 
 # Dependencies for Debian-based distributions:
-- `chkrootkit`
-- `rkhunter`
-- `ClamAV`
-- `Unhide`
-- `debsums`
-- `Lynis`
+- `chkrootkit` apt install chkrootkit
+- `rkhunter` apt install rkhunter
+- `ClamAV` apt install clamav
+- `Unhide` apt install unhide
+- `debsums` apt install debsums
+- `Lynis` apt install lynis
 
 
 # Config files
